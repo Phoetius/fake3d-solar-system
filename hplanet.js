@@ -3,7 +3,7 @@ function HPlanet(x,y)
     this.element = null;
     this.x = x;
     this.y = y;
-    this.radius = Math.random()*10;
+    this.radius = Math.random()*10+2;
     this.bdis = dis(sun.x, sun.y, this.x, this.y);
     this.bdir = dir(sun.x, sun.y, this.x, this.y);
     
