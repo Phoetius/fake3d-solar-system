@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <script type="text/javascript" src="http://kaemura.bitbucket.io/core/core.js"></script>
+        <script type="text/javascript" src="hplanet.js"></script>
+        <script type="text/javascript" src="vplanet.js"></script>
+        <script type="text/javascript" src="sun.js"></script>
+    </head>
+    
+    <body style="margin:0">
+        <svg id = "svg" width="100vw" height="100vh" style="background:black"></svg>
+        
+        <script>
+            var sun = new Sun(400,300);
+
+            //Creation of horizontal planets
+            
+            hplanets = []
+            
+            for (_ = 0; _ <= 3; _++)
+            {
+                var mdis = Math.random()*150+50;
+                var mdir = Math.random()*90;
+                hplanets.push(new HPlanet(sun.x + ldx(mdis, mdir), sun.y + ldy(mdis, mdir)));
+            }
+            
+            //Creation of vertical planets
+            
+            vplanets = []
+            
+            for (_ = 0; _ <= 3; _++)
+            {
+                var mdis = Math.random()*100+50;
+                var mdir = Math.random()*120;
+                vplanets.push(new VPlanet(sun.x + ldx(mdis, mdir), sun.y + ldy(mdis, mdir)));
+            }
+            
+            //Game Loop
+            function update()
+            {
+               window.requestAnimationFrame(update);
+                
+                sun.update();
+                
+                for(var _=0; _<=hplanets.length-1; _++)
+                {
+                    if(hplanets[_])hplanets[_].update();
+                }
+                
+                for(var _=0; _<=vplanets.length-1; _++)
+                {
+                    if(vplanets[_])vplanets[_].update();
+                }
+            }
+            window.requestAnimationFrame(update);
+        </script>
+    </body>
+</html>
